@@ -4,12 +4,12 @@ import Header from "./components/Header";
 function App() {
   return (
     <div
-      className="w-full relative  min-h-screen bg-cover bg-center"
+      className="w-full min-h-screen bg-cover bg-center bg-black"
       style={{
         backgroundImage: "url('/netflix-bg.jpg')",
       }}
     >
-      <div className="absolute z-1 inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/70"></div>
 
       <div className="z-10 relative">
         <Header />

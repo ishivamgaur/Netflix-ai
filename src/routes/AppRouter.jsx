@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App.jsx";
-import SignInPage from "../pages/SignInPage";
-import SignupPage from "../pages/SignupPage";
+import AuthPage from "../pages/AuthPage.jsx";
 import Hero from "../components/Hero";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 const AppRouter = createBrowserRouter([
   {
@@ -10,9 +10,12 @@ const AppRouter = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Hero /> },
-      { path: "/signin", element: <SignInPage /> },
-      { path: "/signup", element: <SignInPage /> },
+      { path: "/auth", element: <AuthPage /> },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 
