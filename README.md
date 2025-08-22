@@ -3,6 +3,10 @@
 - npm create vite@latest
 - configure tailwind css
 
+# Implemented
+- Signin/Signup page & Navbar
+- Routing
+
 
 # Features
 
