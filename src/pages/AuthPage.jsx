@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { checkValidate } from "../utils/formValidate.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase.js";
 
 const AuthPage = () => {
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
   const [inputValidateError, setinputValidateError] = useState("");
   const [userData, setUserData] = useState({
@@ -17,7 +23,7 @@ const AuthPage = () => {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const name = userData.name.trim();
     const email = userData.email.trim();
@@ -32,7 +38,38 @@ const AuthPage = () => {
     setinputValidateError(validatedError);
     if (validatedError) return;
 
-    console.log(userData);
+    //! Signup
+    if (!isSignIn) {
+      try {
+        setIsAuthLoading(true);
+        const userCredentials = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setIsAuthLoading(false);
+        console.log("User created: ", userCredentials.user);
+      } catch (error) {
+        const errorCode = error.code;
+        setinputValidateError(`${errorCode}`);
+        setIsAuthLoading(false);
+      }
+    } else {
+      try {
+        setIsAuthLoading(true);
+        const userCredentials = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setIsAuthLoading(false);
+        console.log("Logged in user: ", userCredentials.user);
+      } catch (error) {
+        const errorCode = error.code;
+        setinputValidateError(`${errorCode}`);
+        setIsAuthLoading(false);
+      }
+    }
     setUserData({ name: "", email: "", password: "" });
   };
 
@@ -48,11 +85,11 @@ const AuthPage = () => {
   return (
     <div className="w-full min-h-screen -mt-20">
       <div className="w-full min-h-screen flex items-center justify-center">
-        <div className="min-w-3/12 bg-black/60 min-h-40 flex flex-col gap-5 p-15 rounded-2xl *:transition-all *:duration-500 ">
+        <div className="w-3/12 bg-black/60 min-h-40 flex flex-col gap-5 p-15 rounded-2xl *:transition-all *:duration-500 ">
           <h1 className="text-3xl font-bold text-white ">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h1>
-          <form className="flex flex-col w-full gap-5 *:transition-all *:duration-500 ">
+          <form className="flex flex-col w-full gap-5 *:transition-all *:duration-500 flex-wrap">
             {!isSignIn && (
               <input
                 name="name"
@@ -81,15 +118,18 @@ const AuthPage = () => {
               placeholder="Enter password"
             />
             {inputValidateError && (
-              <p className="text-lg font-bold text-red-500">
-                {inputValidateError}
+              <p className="text-sm font-bold text-red-500 text-center">
+                *{inputValidateError}
               </p>
             )}
             <button
+              disabled={isAuthLoading ? true : false}
               onClick={(e) => handleFormSubmit(e)}
-              className="bg-red-500/50 text-xl font-semibold cursor-pointer hover:bg-red-500/60 text-white  px-4 py-3 rounded-md"
+              className="bg-red-500/50 text-xl disabled:cursor-not-allowed disabled:bg-gray-800/50 font-semibold cursor-pointer hover:bg-red-500/60 text-white  px-4 py-3 rounded-md"
             >
-              {isSignIn ? "Sign In" : "Sign Up"}
+              {isSignIn
+                ? `${isAuthLoading ? "Signing in..." : "Sign In"}`
+                : `${isAuthLoading ? "Creating account..." : "Sign Up"}`}
             </button>
           </form>
           <p

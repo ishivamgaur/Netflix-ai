@@ -4,8 +4,17 @@
 - configure tailwind css
 
 # Implemented
-- Signin/Signup page & Navbar
+
+- Header
 - Routing
+- Login form
+- Signup form
+- Form validation
+- npm i firebase --> then added firebase config file.
+- For Sign-Up used createUserWithEmailAndPassword(auth, email, password) api.
+  - Implmented Sign-Up using email and pass
+- For Sign-In used signInWithEmailAndPassword(auth, email, password) api.
+  - Implmented Sign-In using email and pass
 
 
 # Features
@@ -19,7 +28,7 @@
     - Trailer in Background
     - Title & Description
     - Movie Suggestions
-      - MovieLists * N
+      - MovieLists \* N
 - Netflix-GPT
   - Search bar
   - Movie suggestions
