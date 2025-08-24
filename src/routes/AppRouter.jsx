@@ -3,6 +3,7 @@ import App from "../App.jsx";
 import AuthPage from "../pages/AuthPage.jsx";
 import Hero from "../components/Hero";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
+import Browse from "../pages/Browse.jsx";
 
 const AppRouter = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const AppRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Hero /> },
       { path: "/auth", element: <AuthPage /> },
+      { path: "/browse", element: <Browse /> },
     ],
   },
   {
