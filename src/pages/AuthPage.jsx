@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const [isAuthLoading, setIsAuthLoading] = useState(false);
@@ -15,6 +17,8 @@ const AuthPage = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,9 +53,12 @@ const AuthPage = () => {
         );
         setIsAuthLoading(false);
         console.log("User created: ", userCredentials.user);
+        toast.success("User created");
+        navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         setinputValidateError(`${errorCode}`);
+        toast.error(`${errorCode}`);
         setIsAuthLoading(false);
       }
     } else {
@@ -64,10 +71,13 @@ const AuthPage = () => {
         );
         setIsAuthLoading(false);
         console.log("Logged in user: ", userCredentials.user);
+        toast.success("Sign-In success");
+        navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         setinputValidateError(`${errorCode}`);
         setIsAuthLoading(false);
+        toast.error("Sign-In failed");
       }
     }
     setUserData({ name: "", email: "", password: "" });
@@ -83,7 +93,7 @@ const AuthPage = () => {
   }, [isSignIn]);
 
   return (
-    <div className="w-full min-h-screen -mt-20">
+    <div className="w-full min-h-screen -mt-20  background-image">
       <div className="w-full min-h-screen flex items-center justify-center">
         <div className="w-3/12 bg-black/60 min-h-40 flex flex-col gap-5 p-15 rounded-2xl *:transition-all *:duration-500 ">
           <h1 className="text-3xl font-bold text-white ">

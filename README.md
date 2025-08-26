@@ -14,8 +14,13 @@
 - For Sign-Up used createUserWithEmailAndPassword(auth, email, password) api.
   - Implmented Sign-Up using email and pass
 - For Sign-In used signInWithEmailAndPassword(auth, email, password) api.
+
   - Implmented Sign-In using email and pass
 
+- Installed npm i reduxjs/toolkit
+- Installed npm i react-redux
+- build the store and userSlice
+- Stores the login user data
 
 # Features
 
