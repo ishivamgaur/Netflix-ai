@@ -3,10 +3,13 @@ import { checkValidate } from "../utils/formValidate.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/slices/userSlice.js";
 
 const AuthPage = () => {
   const [isAuthLoading, setIsAuthLoading] = useState(false);
@@ -19,6 +22,7 @@ const AuthPage = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,19 +50,38 @@ const AuthPage = () => {
     if (!isSignIn) {
       try {
         setIsAuthLoading(true);
+        // Signup new user
         const userCredentials = await createUserWithEmailAndPassword(
           auth,
           email,
           password
         );
-        setIsAuthLoading(false);
-        console.log("User created: ", userCredentials.user);
+
+        const user = userCredentials.user;
         toast.success("User created");
-        navigate("/browse");
+
+        try {
+          await updateProfile(user, {
+            displayName: name,
+            photoURL:
+              "https://images.unsplash.com/photo-1457449940276-e8deed18bfff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          });
+
+          // Get latest user data
+          const { displayName, uid, email, photoURL } = auth.currentUser;
+
+          // Save user in redux
+          dispatch(addUser({ displayName, uid, email, photoURL }));
+          navigate("/browse");
+        } catch (error) {
+          setinputValidateError(error.message);
+        }
       } catch (error) {
         const errorCode = error.code;
         setinputValidateError(`${errorCode}`);
         toast.error(`${errorCode}`);
+        return;
+      } finally {
         setIsAuthLoading(false);
       }
     } else {
@@ -69,15 +92,18 @@ const AuthPage = () => {
           email,
           password
         );
-        setIsAuthLoading(false);
-        console.log("Logged in user: ", userCredentials.user);
+
+        const user = userCredentials.user;
+        // console.log("logged In user:", user);
         toast.success("Sign-In success");
         navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         setinputValidateError(`${errorCode}`);
-        setIsAuthLoading(false);
         toast.error("Sign-In failed");
+        return;
+      } finally {
+        setIsAuthLoading(false);
       }
     }
     setUserData({ name: "", email: "", password: "" });
@@ -142,14 +168,15 @@ const AuthPage = () => {
                 : `${isAuthLoading ? "Creating account..." : "Sign Up"}`}
             </button>
           </form>
-          <p
+          <button
+            disabled={isAuthLoading ? true : false}
             onClick={handleToggleAuth}
-            className="text-gray-400 hover:text-gray-200 cursor-pointer pb-5 "
+            className={`text-gray-400 hover:text-gray-200 cursor-pointer disabled:cursor-not-allowed pb-5`}
           >
             {isSignIn
               ? "Don't have an account? Sign Up"
               : "Already have account? Sign In"}
-          </p>
+          </button>
         </div>
       </div>
     </div>
