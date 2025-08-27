@@ -9,6 +9,7 @@ import { auth } from "../utils/firebase.js";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/slices/userSlice.js";
+import { USER_AVATAR } from "../utils/constants.js";
 
 const AuthPage = () => {
   const [isAuthLoading, setIsAuthLoading] = useState(false);
@@ -61,8 +62,7 @@ const AuthPage = () => {
         try {
           await updateProfile(user, {
             displayName: name,
-            photoURL:
-              "https://images.unsplash.com/photo-1457449940276-e8deed18bfff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            photoURL: USER_AVATAR,
           });
 
           // Get latest user data

@@ -21,6 +21,13 @@
 - Installed npm i react-redux
 - build the store and userSlice
 - Stores the login user data
+- Checking userAuth with onAuthStateChanged(API) and storing in store
+- Added React-hot-toast for pop-up messages
+- Implemented Signout feature
+- BugFix: Sign up user displayName and profile picture update
+- BugFix: If user is not authenticated Redirect "/browse" to Login page and vice-versa.
+- Added all constants in constants.js file
+
 
 # Features
 

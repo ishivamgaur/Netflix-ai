@@ -4,6 +4,7 @@ import { auth } from "../utils/firebase";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { LOGO } from "../utils/constants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,11 +30,7 @@ const Header = () => {
       <nav className="h-20 flex items-center container mx-auto justify-between cursor-pointer">
         <div>
           <Link to={"/"}>
-            <img
-              src="/netflix_logo.png"
-              alt="logo"
-              className="h-18 select-none"
-            />
+            <img src={LOGO} alt="logo" className="h-18 select-none" />
           </Link>
         </div>
         {auth.currentUser ? (
