@@ -10,7 +10,7 @@ import { addUser, removeUser } from "./store/slices/userSlice";
 const toastOptions = {
   duration: 4000,
   style: {
-    background: "#333",
+    background: "#222",
     color: "#fff",
   },
   success: {
@@ -33,15 +33,17 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { displayName, uid, email } = user;
-        dispatch(addUser({ uid, email, displayName }));
+        const { displayName, uid, email, photoURL } = user;
+        // console.log("user: ", user);
+        dispatch(addUser({ uid, email, displayName, photoURL }));
       } else {
+        // console.log("removeUser runs");
         dispatch(removeUser());
       }
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="w-full min-h-screen relative bg-black">
