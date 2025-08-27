@@ -7,7 +7,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/slices/userSlice.js";
 
@@ -21,7 +20,6 @@ const AuthPage = () => {
     password: "",
   });
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
@@ -72,7 +70,6 @@ const AuthPage = () => {
 
           // Save user in redux
           dispatch(addUser({ displayName, uid, email, photoURL }));
-          navigate("/browse");
         } catch (error) {
           setinputValidateError(error.message);
         }
@@ -96,7 +93,6 @@ const AuthPage = () => {
         const user = userCredentials.user;
         // console.log("logged In user:", user);
         toast.success("Sign-In success");
-        navigate("/browse");
       } catch (error) {
         const errorCode = error.code;
         setinputValidateError(`${errorCode}`);

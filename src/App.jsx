@@ -29,6 +29,8 @@ const toastOptions = {
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,14 +38,18 @@ function App() {
         const { displayName, uid, email, photoURL } = user;
         // console.log("user: ", user);
         dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate("/browse");
       } else {
         // console.log("removeUser runs");
         dispatch(removeUser());
+        if (pathname === "/browse") {
+          navigate("/");
+        }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [pathname, navigate]);
 
   return (
     <div className="w-full min-h-screen relative bg-black">

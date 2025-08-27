@@ -17,7 +17,6 @@ const Header = () => {
     try {
       await signOut(auth);
       toast.success("Signed out successfully");
-      navigate("/");
     } catch (error) {
       console.error("Something went wrong: ", error);
       toast.error("Signout failed");
