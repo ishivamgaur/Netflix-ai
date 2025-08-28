@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies.js";
+import { useSelector } from "react-redux";
+import MainContainer from "../components/MainContainer.jsx";
+import SecondaryContainer from "../components/SecondaryContainer.jsx";
 
 const Browse = () => {
+  useNowPlayingMovies();
+
+  const movies = useSelector((store) => store.movie?.nowPlayingMovies);
+  if (!movies) return;
+  // console.log("Movies: ", movies);
+
+  const firstMovie = movies[6];
+
   return (
-    <div className="w-full min-h-screen -mt-20 bg-center ">
-      <div className="pt-20 h-screen p-10 *:text-white">
-        <h1>Hello world</h1>
-      </div>
+    <div className="w-full min-h-screen bg-white -mt-20 bg-center ">
+      <MainContainer movie={firstMovie} />
+      <SecondaryContainer />
     </div>
   );
 };

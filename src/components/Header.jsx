@@ -10,9 +10,9 @@ const Header = () => {
   const navigate = useNavigate();
 
   const signedInUser = useSelector((store) => store.user);
-  console.log("signedInUser: ", signedInUser);
+  // console.log("signedInUser: ", signedInUser);
 
-  // console.log("currentUser: ",auth.currentUser)
+  // console.log("currentUser: ",signedInUser)
 
   const handleSignOut = async () => {
     try {
@@ -33,12 +33,12 @@ const Header = () => {
             <img src={LOGO} alt="logo" className="h-18 select-none" />
           </Link>
         </div>
-        {auth.currentUser ? (
+        {signedInUser ? (
           <div className="h-18 flex items-center text-white gap-2 *:transition-all *:duration-300">
             <img
-              src={auth.currentUser.photoURL}
-              alt={auth.currentUser.displayName}
-              title={auth.currentUser.displayName}
+              src={signedInUser.photoURL}
+              alt={signedInUser.displayName}
+              title={signedInUser.displayName}
               className="h-12 w-12 object-cover bg-black  rounded-full border-2 border-red-500/50 hover:border-red-500 "
             />
 

@@ -28,6 +28,15 @@
 - BugFix: If user is not authenticated Redirect "/browse" to Login page and vice-versa.
 - Added all constants in constants.js file
 
+- fetched Data from TMDB now playing movies list API
+- Custom hook for Now playing Movies
+- Created MovieSlice
+- Update store with movies data
+- Made a MainContainer & secondary container in Browse Page
+- fetched Data For trailer video with now playing movie slice
+- Embedded the youtube video and make it mute and autoplay and loop infinity
+
+- Added Poppines Font & installed React-icons for look awesome
 
 # Features
 
