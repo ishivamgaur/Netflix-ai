@@ -7,7 +7,7 @@ const MovieCard = ({ movieDetails }) => {
   console.log(`${TMBD_IMAGE_PATH_URL_LOW_RES}${movieDetails.poster_path}`);
 
   return (
-    <div className="w-52 flex">
+    <div className="w-42 flex">
       <img
         className="w-full object-cover"
         src={`${TMBD_IMAGE_PATH_URL_LOW_RES}${movieDetails.poster_path}`}

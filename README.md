@@ -39,6 +39,7 @@
 - Added Poppines Font & installed React-icons for look awesome
 - Made Secondary Container with MoviesList and showing Now Playing Movies
 - Made a movieCard
+- Made a Hook of fetching Popular Movies, Top Rated, Up Comming from different APIs
 
 # Features
 
