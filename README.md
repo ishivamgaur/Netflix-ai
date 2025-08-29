@@ -37,6 +37,8 @@
 - Embedded the youtube video and make it mute and autoplay and loop infinity
 
 - Added Poppines Font & installed React-icons for look awesome
+- Made Secondary Container with MoviesList and showing Now Playing Movies
+- Made a movieCard
 
 # Features
 

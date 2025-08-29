@@ -10,7 +10,7 @@ const MainContainer = ({ movie }) => {
   useTrailerVideo(id);
 
   const trailerVideo = useSelector((store) => store.movie?.trailerVideo);
-  if (!trailerVideo) return;
+  // if (!trailerVideo) return;
 
   console.log("trailerVideo: ", trailerVideo);
 

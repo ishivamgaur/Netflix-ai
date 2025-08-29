@@ -12,3 +12,7 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWFjODhmNWVjZWJmZmU1MDNlMGYzMzVjYzllY2E0NCIsIm5iZiI6MTc1NjMyMDU0OS45OCwic3ViIjoiNjhhZjUzMjVjYzUwZWVmYzNiNjI0ZDAwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.J4m4zv9qachFRJRTUnCb8QCM8Vzf1PtJ2rSH5YIQXPE",
   },
 };
+
+export const TMBD_IMAGE_PATH_URL_LOW_RES = "https://image.tmdb.org/t/p/w300/";
+export const TMBD_IMAGE_PATH_URL_HIGH_RES =
+  "https://image.tmdb.org/t/p/orignal";

@@ -11,12 +11,12 @@ const Browse = () => {
   if (!movies) return;
   // console.log("Movies: ", movies);
 
-  const firstMovie = movies[6];
+  const firstMovie = movies[0];
 
   return (
     <div className="w-full min-h-screen bg-white -mt-20 bg-center ">
       <MainContainer movie={firstMovie} />
-      <SecondaryContainer />
+      <SecondaryContainer moviesList={movies} />
     </div>
   );
 };
