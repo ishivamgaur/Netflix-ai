@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOGO } from "../utils/constants";
 import { MdLogout } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
-import { toggleAiSearch } from "../store/slices/aiSearchToggleSlice";
+import { toggleAiSearchView } from "../store/slices/aiSlice.js";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Header = () => {
 
   const handleToggleAiToMainContainer = () => {
     console.log("clicked");
-    dispath(toggleAiSearch());
+    dispath(toggleAiSearchView());
   };
 
   return (

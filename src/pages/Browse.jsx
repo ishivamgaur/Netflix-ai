@@ -15,14 +15,14 @@ const Browse = () => {
   useUpCommingMovies();
 
   const movies = useSelector((store) => store.movie?.nowPlayingMovies);
-  const isAiSearch = useSelector((store) => store.aiToggle.isAiSearch); //For toggling AiSearch component and Main container
+  const showAiSearch = useSelector((store) => store.ai.showAiSearch); //For toggling AiSearch component and Main container
   if (!movies) return;
 
   const firstMovie = movies[0];
 
   return (
     <div className="w-full min-h-screen bg-white -mt-20 bg-center ">
-      {isAiSearch ? (
+      {showAiSearch ? (
         <AISearchComponent />
       ) : (
         <div>
