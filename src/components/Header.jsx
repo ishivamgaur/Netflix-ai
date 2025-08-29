@@ -3,11 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LOGO } from "../utils/constants";
+import { MdLogout } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
+import { toggleAiSearch } from "../store/slices/aiSearchToggleSlice";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispath = useDispatch();
 
   const signedInUser = useSelector((store) => store.user);
   // console.log("signedInUser: ", signedInUser);
@@ -25,35 +29,50 @@ const Header = () => {
     }
   };
 
+  const handleToggleAiToMainContainer = () => {
+    console.log("clicked");
+    dispath(toggleAiSearch());
+  };
+
   return (
     <div className="w-full relative z-20 bg-gradient-to-b from-20% from-black/80 to-transparent">
-      <nav className="h-20 flex items-center container mx-auto justify-between cursor-pointer">
+      <nav className="h-20 flex items-center container mx-auto justify-between">
         <div>
           <Link to={"/"}>
             <img src={LOGO} alt="logo" className="h-18 select-none" />
           </Link>
         </div>
         {signedInUser ? (
-          <div className="h-18 flex items-center text-white gap-2 *:transition-all *:duration-300">
-            <img
-              src={signedInUser.photoURL}
-              alt={signedInUser.displayName}
-              title={signedInUser.displayName}
-              className="h-12 w-12 object-cover bg-black  rounded-full border-2 border-red-500/50 hover:border-red-500 "
-            />
-
+          <div className="h-18 flex items-center text-white gap-6 *:transition-all *:duration-300">
             <button
-              onClick={handleSignOut}
-              className="text-gray-400 hover:text-gray-200 font-bold cursor-pointer"
+              onClick={handleToggleAiToMainContainer}
+              className="bg-green-900 flex items-center gap-2 hover:bg-green-950 cursor-pointer rounded-full text-lg font-semibold px-4 py-1"
             >
-              (Sign Out)
+              <IoSearch size={24} />
+              Ai Search
             </button>
+
+            <div className="flex items-center gap-2 *:transition-all *:duration-300">
+              <img
+                src={signedInUser.photoURL}
+                alt={signedInUser.displayName}
+                title={signedInUser.displayName}
+                className="h-10 w-10 object-cover bg-black  rounded-full border-2 border-red-500/50 hover:border-red-500 "
+              />
+
+              <p className="capitalize">{signedInUser.displayName}</p>
+              <MdLogout
+                onClick={handleSignOut}
+                size={28}
+                className="cursor-pointer text-gray-500 hover:text-white"
+              />
+            </div>
           </div>
         ) : (
           <div className="h-18 flex items-center  *:transition-all *:duration-300">
             <Link
               to={"/auth"}
-              className="bg-red-800/50 hover:bg-red-900 text-white font-bold px-4 py-1 rounded-full cursor-pointer"
+              className="bg-red-800/50 hover:bg-red-900 text-white font-bold px-4 py-2 text-lg rounded-full cursor-pointer"
             >
               Sign In
             </Link>

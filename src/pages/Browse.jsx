@@ -6,23 +6,30 @@ import SecondaryContainer from "../components/SecondaryContainer.jsx";
 import usePopularMovies from "../hooks/usePopularMovies.js";
 import useTopRatedMovies from "../hooks/useTopRatedMovies.js";
 import useUpCommingMovies from "../hooks/useUpCommingMovies.js";
+import AISearchComponent from "../components/AISearchComponent.jsx";
 
 const Browse = () => {
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
-  useUpCommingMovies(); 
+  useUpCommingMovies();
 
   const movies = useSelector((store) => store.movie?.nowPlayingMovies);
+  const isAiSearch = useSelector((store) => store.aiToggle.isAiSearch); //For toggling AiSearch component and Main container
   if (!movies) return;
-  // console.log("Movies: ", movies);
 
   const firstMovie = movies[0];
 
   return (
     <div className="w-full min-h-screen bg-white -mt-20 bg-center ">
-      <MainContainer movie={firstMovie} />
-      <SecondaryContainer moviesList={movies} />
+      {isAiSearch ? (
+        <AISearchComponent />
+      ) : (
+        <div>
+          <MainContainer movie={firstMovie} />
+          <SecondaryContainer moviesList={movies} />
+        </div>
+      )}
     </div>
   );
 };

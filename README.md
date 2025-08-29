@@ -40,6 +40,8 @@
 - Made Secondary Container with MoviesList and showing Now Playing Movies
 - Made a movieCard
 - Made a Hook of fetching Popular Movies, Top Rated, Up Comming from different APIs
+- Made a Toggle AiSearch slice to the store to toggle between main page and Ai search page
+- Initializing working on AiSearchComponent page
 
 # Features
 
