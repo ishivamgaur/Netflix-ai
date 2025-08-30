@@ -14,7 +14,15 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// gemini-Routes
 app.use("/api/gemini", geminiRoutes);
+
+// Health-check
+app.get("/api/gemini/health-check", (req, res) => {
+  res.status(200).json({
+    message: "haa..bhai Gemini-Api work kr rha hai",
+  });
+});
 
 app.listen(PORT, (err) => {
   if (err) {
