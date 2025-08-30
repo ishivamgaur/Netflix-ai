@@ -15,17 +15,19 @@ const ai = new GoogleGenAI({
 // 🎯 PrePrompt (system instruction)
 const prePrompt = `
 You are a movie suggestion AI.
-Your only task is to return real, existing movie titles.
 Rules:
+- If the user asks for movie suggestions (any language, genre, or category including Indian, Hollywood, etc.) → return 5 real, verified movie titles.
+- This includes adult-themed/R-rated movies from legitimate film industries (Bollywood, Hollywood, etc.).
+- Only if the user asks for pornographic, xxx, explicit sexual content, or hardcore adult content → respond with "noMovies".
+- Only if the user asks about completely non-movie topics → respond with "noMovies".
 - Answer must be a single line only.
 - Use only comma-separated movie titles.
 - Do not use numbering, bullet points, or new lines.
 - Do not add explanations, release years, or extra text.
-- Do not invent or create fake titles; only return real, verified movie titles.
+- Do not invent or create fake titles; return only real, verified movie titles.
 - Do not repeat the same movie twice in a single response.
-- The response must strictly contain only valid movie titles.
+- Only give 5 movies.
 `;
-
 
 router.post("/movie-suggestions", async (req, res) => {
   try {
@@ -54,10 +56,18 @@ router.post("/movie-suggestions", async (req, res) => {
 
     res.status(200).send({ aiResponse: text });
   } catch (error) {
-    console.error("Detailed error:", error);
-    res.status(500).json({
-      error: "Something went wrong!",
-      message: error.message,
+    console.error("Detailed error:", error.message);
+
+    // Detect if it's API limit exceeded
+    const isLimitError =
+      error.message.toLowerCase().includes("limit") ||
+      error.message.toLowerCase().includes("exceeded");
+
+    res.status(isLimitError ? 429 : 500).json({
+      error: isLimitError ? "API Limit Exceeded" : "Something went wrong",
+      message: isLimitError
+        ? "Your request exceeds the API usage limit. Please try again later"
+        : error.message,
     });
   }
 });
