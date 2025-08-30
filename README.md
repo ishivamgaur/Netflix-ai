@@ -41,7 +41,9 @@
 - Made a movieCard
 - Made a Hook of fetching Popular Movies, Top Rated, Up Comming from different APIs
 - Made a Toggle AiSearch slice to the store to toggle between main page and Ai search page
-- Initializing working on AiSearchComponent page
+- Initializing working on AiSearchComponent  page
+- Rename AiSearchComponent to AiSearchPage
+- Implemented toggle between Browse and AiSearchPage with the help of toggleAiSearchView action form Ai Store
 
 # Features
 

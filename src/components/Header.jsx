@@ -14,6 +14,7 @@ const Header = () => {
   const dispath = useDispatch();
 
   const signedInUser = useSelector((store) => store.user);
+  const showAiSearch = useSelector((store) => store.ai.showAiSearch);
   // console.log("signedInUser: ", signedInUser);
 
   // console.log("currentUser: ",signedInUser)
@@ -48,8 +49,13 @@ const Header = () => {
               onClick={handleToggleAiToMainContainer}
               className="bg-green-900 flex items-center gap-2 hover:bg-green-950 cursor-pointer rounded-full text-lg font-semibold px-4 py-1"
             >
-              <IoSearch size={24} />
-              Ai Search
+              {showAiSearch ? (
+                "Main page"
+              ) : (
+                <>
+                  Ai Search <IoSearch size={22} />
+                </>
+              )}
             </button>
 
             <div className="flex items-center gap-2 *:transition-all *:duration-300">

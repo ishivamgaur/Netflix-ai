@@ -6,7 +6,7 @@ import SecondaryContainer from "../components/SecondaryContainer.jsx";
 import usePopularMovies from "../hooks/usePopularMovies.js";
 import useTopRatedMovies from "../hooks/useTopRatedMovies.js";
 import useUpCommingMovies from "../hooks/useUpCommingMovies.js";
-import AISearchComponent from "../components/AISearchComponent.jsx";
+import AiSearchPage from "../components/AiSearchPage.jsx";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -21,9 +21,9 @@ const Browse = () => {
   const firstMovie = movies[0];
 
   return (
-    <div className="w-full min-h-screen bg-white -mt-20 bg-center ">
+    <div className="w-full min-h-screen -mt-20 bg-center ">
       {showAiSearch ? (
-        <AISearchComponent />
+        <AiSearchPage />
       ) : (
         <div>
           <MainContainer movie={firstMovie} />
