@@ -8,7 +8,7 @@ const MoviesList = ({ title, moviesList }) => {
       <div className="flex overflow-x-scroll">
         <div className="flex gap-8 items-center">
           {moviesList.map((movie) => (
-            <MovieCard movieDetails={movie} />
+            <MovieCard key={movie.id} movieDetails={movie} />
           ))}
         </div>
       </div>

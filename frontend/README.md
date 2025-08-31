@@ -44,6 +44,27 @@
 - Initializing working on AiSearchComponent page
 - Rename AiSearchComponent to AiSearchPage
 - Implemented toggle between Browse and AiSearchPage with the help of toggleAiSearchView action form Ai Store
+- For Implmenting AI Need Backend/Server side environment
+- Re-structure application with the root of frontend/backend folder
+- Now I have backend with Gemini Ai Movie Suggestions API. Lets do further
+- Added backend url (http://localhost:3000/api/gemini/movie-suggestions) in constants.js for Ai suggestions.
+- # Implemented Ai Fetching suggestions function
+- # Converted Ai response movie title to array of movie title
+- # Fetched One by one movie with title from TMBD
+- # TMBD API gives multiple movie list in results of one Title. It gives all movie that includes that title string
+- # We want only the Genuinue movie that Ai suggest so we only takes results[0] means first movie that includes the real title.
+- # 
+
+## Backend Implementation
+
+- npm i expess, cors, dotenv
+- npm i @google/genai --> for gemini setup
+- Made api key for Gemini API
+- Made a Health-check api && gemini-api (url/api/gemini/movie-suggestion) for suggestions response
+- Added a PrePromte for AI to give context ex: Act as You are a movie suggestion AI.
+- Added some error handling
+- Added Strong prePromte for movie suggestion and anything or dirty thing it will say "noMovies" response
+- Error handling for API limit exceeds per day
 
 # Features
 
