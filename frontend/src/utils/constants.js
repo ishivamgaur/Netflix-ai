@@ -18,4 +18,4 @@ export const TMBD_IMAGE_PATH_URL_HIGH_RES =
   "https://image.tmdb.org/t/p/orignal";
 
 //Backend URL
-export const AI_SUGGESTION_API_URL="http://localhost:3000/api/gemini/movie-suggestions"
+export const AI_SUGGESTION_API_URL="https://netflix-ai-by-shivam.onrender.com/api/gemini/movie-suggestions"

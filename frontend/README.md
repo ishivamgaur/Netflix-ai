@@ -57,6 +57,7 @@
 - Implemented Error handling to backend ai response errors in aiSuggestion.js and in AiSearchBar
 - Made MovieCardShimmer component
 - Added Shimmer effect to the Fetch loading.
+- Added backend Ai service Deployed URL in constants
 
 ## Backend Implementation
 
@@ -69,6 +70,10 @@
 - Added Strong prePromte for movie suggestion and anything or dirty thing it will say "noMovies" response
 - Error handling for API limit exceeds per day
 - Changed 5 movie result to 10 movie result && Proper error message response
+- Deployed backend on Render
+- Backend base-url: https://netflix-ai-by-shivam.onrender.com
+- Backend HealthCheck url: https://netflix-ai-by-shivam.onrender.com/api/gemini/health-check
+- Backend Movie Suggetions url: https://netflix-ai-by-shivam.onrender.com/api/gemini/movie-suggestions
 
 # Features
 
