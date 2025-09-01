@@ -36,7 +36,7 @@ export const aiSuggestions = async (query = "suggest retro indian movies") => {
 
     throw {
       error: true,
-      message: "Something went wrong",
+      message: error?.response?.error || "Something went wrong",
       status: error.status || 500,
     };
   }
