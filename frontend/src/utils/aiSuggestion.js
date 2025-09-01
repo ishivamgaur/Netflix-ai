@@ -13,36 +13,32 @@ export const aiSuggestions = async (query = "suggest retro indian movies") => {
 
     // Read response text first (important!)
     const responseText = await response.text();
-    let responseData;
 
-    try {
-      responseData = JSON.parse(responseText);
-    } catch (e) {
-      responseData = responseText;
-    }
+    let responseData;
+    responseData = JSON.parse(responseText);
+
+    // console.log("responseData: ", responseData);
 
     if (!response.ok) {
-      // Create enhanced error with backend response details
-      const error = new Error(
+      const ApiError = new Error(
         `API Error: ${response.status} ${response.statusText}`
       );
-      error.status = response.status;
-      error.statusText = response.statusText;
-      error.response = responseData; // This contains your backend error objec
+      ApiError.status = response.status;
+      ApiError.statusText = response.statusText;
+      ApiError.response = responseData; // This contains your backend error objec
 
-      throw error;
+      throw ApiError;
     }
-    
+
     return responseData;
   } catch (error) {
-    console.error("Request failed:", error);
+    console.error("API call failed:", error);
 
-    // Check if it's our enhanced error or a network error
-    if (error.response) {
-      console.error("Backend sent this error:", error.response);
-    }
-
-    throw error;
+    throw {
+      error: true,
+      message: "Something went wrong",
+      status: error.status || 500,
+    };
   }
 };
 

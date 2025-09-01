@@ -53,7 +53,10 @@
 - # Fetched One by one movie with title from TMBD
 - # TMBD API gives multiple movie list in results of one Title. It gives all movie that includes that title string
 - # We want only the Genuinue movie that Ai suggest so we only takes results[0] means first movie that includes the real title.
-- # 
+- # Created a action (addAiSuggestions) in ai slice to add Ai response in store.
+- Implemented Error handling to backend ai response errors in aiSuggestion.js and in AiSearchBar
+- Made MovieCardShimmer component
+- Added Shimmer effect to the Fetch loading.
 
 ## Backend Implementation
 
@@ -65,6 +68,7 @@
 - Added some error handling
 - Added Strong prePromte for movie suggestion and anything or dirty thing it will say "noMovies" response
 - Error handling for API limit exceeds per day
+- Changed 5 movie result to 10 movie result && Proper error message response
 
 # Features
 
