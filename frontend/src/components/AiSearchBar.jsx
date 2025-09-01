@@ -6,14 +6,14 @@ import { useDispatch } from "react-redux";
 import { addAiSuggestions } from "../store/slices/aiSlice.js";
 import toast from "react-hot-toast";
 
-const AiSearchBar = ({ setFetchLoading }) => {
+const AiSearchBar = ({ setFetchLoading, fetchLoading }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [aiMovieSuggestions, setAiMovieSuggestions] = useState("");
+  const [aiMovieSuggestions, setAiMovieSuggestions] = useState([]);
   const dispatch = useDispatch();
 
   const handleFormSubmit = async (e) => {
-    dispatch(addAiSuggestions(null));
     setFetchLoading(true);
+    dispatch(addAiSuggestions(null)); // Clear store immediately
     e.preventDefault();
     if (searchInput.trim() === "") return;
     console.log("fetching..");
@@ -55,19 +55,29 @@ const AiSearchBar = ({ setFetchLoading }) => {
       setFetchLoading(false);
       let movies = TmdbResults.map((data) => {
         //* {..results: [{...}, {...}]}
-        const title = data.results[0]?.title;
-        let filteredResultTitle = data.results.filter((movie) => {
-          let results = movie.title === title;
-          return results;
-        });
+        // const title = data.results[0]?.title;
+        // let filteredResultTitle = data.results.filter((movie) => {
+        //   let results = movie.title === title;
+        //   return results;
+        // });
 
-        let filterResults = filteredResultTitle[0];
+        // let filterResults = filteredResultTitle[0];
 
-        return filterResults;
+        // return filterResults;
+        return data.results[0];
       }).filter(Boolean);
 
-      console.log("movies: ", movies);
-      filtedMovies = movies;
+      // console.log("movies: ", movies);
+      // filtedMovies = movies;
+
+      const uniqueMovies = movies.reduce((acc, movie) => {
+        if (movie.id && !acc.some((m) => m.id === movie.id)) {
+          acc.push(movie);
+        }
+        return acc;
+      }, []);
+
+      filtedMovies = uniqueMovies;
     }
 
     dispatch(addAiSuggestions(filtedMovies));
@@ -82,15 +92,17 @@ const AiSearchBar = ({ setFetchLoading }) => {
   return (
     <form className="w-1/2 mx-auto p-5 rounded-xl bg-black/90 gap-5 flex *:transition-all *:duration-300">
       <input
+        disabled={fetchLoading}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         type="text"
         placeholder="Search for movies suggestions"
-        className="w-9/12 text-xl rounded-md px-5 h-15 placeholder:text-gray-200/20 ring-2 ring-transparent focus:ring-red-900 outline-none bg-gray-800/50 text-white"
+        className="w-9/12 text-xl disabled:cursor-not-allowed rounded-md px-5 h-15 placeholder:text-gray-200/20 ring-2 ring-transparent focus:ring-red-900 outline-none bg-gray-800/50 text-white"
       />
       <button
+        disabled={fetchLoading}
         onClick={handleFormSubmit}
-        className="bg-red-900 hover:bg-red-950 px-5 py-2 w-3/12 h-15 rounded-md text-xl font-semibold cursor-pointer text-white flex items-center gap-2 justify-center"
+        className={`bg-red-900 hover:bg-red-950 disabled:bg-gray-900 disabled:cursor-not-allowed px-5 py-2 w-3/12 h-15 rounded-md text-xl font-semibold cursor-pointer text-white flex items-center gap-2 justify-center`}
       >
         <IoSearch size={28} />
         Ai Search
