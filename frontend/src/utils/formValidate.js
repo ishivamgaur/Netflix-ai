@@ -7,7 +7,7 @@ export const checkValidate = (name, email, password) => {
       password
     );
 
-  if (!nameValid) return "Name must be at least 4 letters";
+  if (!nameValid) return "Name must be at least 4 letters without *Numbers";
   if (!emailValid) return "Enter a valid email";
   if (!passwordValid)
     return "Password must be 6+ chars with uppercase, number & special char";

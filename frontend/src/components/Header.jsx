@@ -73,7 +73,7 @@ const Header = () => {
               />
 
               <p className="capitalize text-sm md:text-base ">
-                {signedInUser.displayName.length > 12
+                {signedInUser.displayName?.length > 12
                   ? `${signedInUser.displayName.substring(0, 10)}...`
                   : signedInUser.displayName}
               </p>
