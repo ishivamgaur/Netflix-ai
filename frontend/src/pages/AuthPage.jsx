@@ -115,19 +115,19 @@ const AuthPage = () => {
   }, [isSignIn]);
 
   return (
-    <div className="w-full min-h-screen -mt-20  background-image">
-      <div className="w-full min-h-screen flex items-center justify-center">
-        <div className="w-3/12 bg-black/60 min-h-40 flex flex-col gap-5 p-15 rounded-2xl *:transition-all *:duration-500 ">
-          <h1 className="text-3xl font-bold text-white ">
+    <div className="w-full min-h-screen -mt-20 background-image">
+      <div className="w-full min-h-screen flex items-center justify-center p-4">
+        <div className="w-11/12 sm:w-9/12 md:w-6/12 lg:w-6/12 xl:w-[500px] bg-black/60 min-h-40 flex flex-col gap-4 md:gap-5 p-8 sm:p-8 md:p-10 lg:p-12 xl:p-15 rounded-xl md:rounded-2xl *:transition-all *:duration-500">
+          <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white text-center">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h1>
-          <form className="flex flex-col w-full gap-5 *:transition-all *:duration-500 flex-wrap">
+          <form className="flex flex-col w-full gap-4 md:gap-5 *:transition-all *:duration-500 flex-wrap">
             {!isSignIn && (
               <input
                 name="name"
                 value={userData.name}
                 onChange={handleInputChange}
-                className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-4 py-3 rounded-md"
+                className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-3 sm:px-4 py-3 sm:py-4 rounded-md text-md sm:text-base"
                 type="text"
                 placeholder="Enter name"
               />
@@ -136,7 +136,7 @@ const AuthPage = () => {
               name="email"
               value={userData.email}
               onChange={handleInputChange}
-              className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-4 py-3 rounded-md"
+              className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-3 sm:px-4 py-3 sm:py-4 rounded-md text-md sm:text-base"
               type="email"
               placeholder="Enter email"
             />
@@ -144,20 +144,20 @@ const AuthPage = () => {
               name="password"
               value={userData.password}
               onChange={handleInputChange}
-              className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-4 py-3 rounded-md"
+              className="bg-gray-100/10 text-white border-none border-1 outline-none ring-0 focus:ring-2 ring-transparent focus:ring-sky-500/50 px-3 sm:px-4 py-3 sm:py-4 rounded-md text-md sm:text-base"
               type="password"
               autoComplete="false"
               placeholder="Enter password"
             />
             {inputValidateError && (
-              <p className="text-sm font-bold text-red-500 text-center">
+              <p className="text-xs sm:text-sm font-bold text-red-500 text-center">
                 *{inputValidateError}
               </p>
             )}
             <button
               disabled={isAuthLoading ? true : false}
               onClick={(e) => handleFormSubmit(e)}
-              className="bg-red-500/50 text-xl disabled:cursor-not-allowed disabled:bg-gray-800/50 font-semibold cursor-pointer hover:bg-red-500/60 text-white  px-4 py-3 rounded-md"
+              className="bg-red-500/50 text-lg sm:text-xl disabled:cursor-not-allowed disabled:bg-gray-800/50 font-semibold cursor-pointer hover:bg-red-500/60 text-white px-3 sm:px-4 py-3 sm:py-4 rounded-md"
             >
               {isSignIn
                 ? `${isAuthLoading ? "Signing in..." : "Sign In"}`
@@ -167,7 +167,7 @@ const AuthPage = () => {
           <button
             disabled={isAuthLoading ? true : false}
             onClick={handleToggleAuth}
-            className={`text-gray-400 hover:text-gray-200 cursor-pointer disabled:cursor-not-allowed pb-5`}
+            className={`text-gray-400 hover:text-gray-200 cursor-pointer disabled:cursor-not-allowed pb-3 md:pb-5 text-xs sm:text-sm text-center`}
           >
             {isSignIn
               ? "Don't have an account? Sign Up"

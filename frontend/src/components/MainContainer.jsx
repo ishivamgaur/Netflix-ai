@@ -15,7 +15,7 @@ const MainContainer = ({ movie }) => {
   // console.log("trailerVideo: ", trailerVideo);
 
   return (
-    <div className="relative">
+    <div className="relative pt-18 lg:pt-0">
       <MovieTitleOfVideo movie={movie} />
       <MovieVideoBackground trailerVideo={trailerVideo} />
     </div>

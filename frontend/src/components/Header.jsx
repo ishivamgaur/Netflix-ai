@@ -36,51 +36,62 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full relative z-20 bg-gradient-to-b from-20% from-black/80 to-transparent">
-      <nav className="h-20 flex items-center container mx-auto justify-between">
+    <div className="w-full relative z-20 bg-gradient-to-b from-black/90 to-transparent">
+      <nav className="h-18 md:h-20 flex items-center container mx-auto justify-between px-4 md:px-0">
         <div>
           <Link to={"/"}>
-            <img src={LOGO} alt="logo" className="h-18 select-none" />
+            <img
+              src={LOGO}
+              alt="logo"
+              className="h-12 md:h-14 lg:h-16 select-none"
+            />
           </Link>
         </div>
         {signedInUser ? (
-          <div className="h-18 flex items-center text-white gap-6 *:transition-all *:duration-300">
+          <div className="h-18 flex items-center text-white gap-3 md:gap-6 *:transition-all *:duration-300">
             <button
               onClick={handleToggleAiToMainContainer}
-              className="bg-green-900 flex items-center gap-2 hover:bg-green-950 cursor-pointer rounded-full text-lg font-semibold px-4 py-1"
+              className="bg-green-900 flex items-center gap-1 md:gap-2 hover:bg-green-950 cursor-pointer rounded-full text-sm md:text-lg font-semibold px-3 md:px-4 py-1"
             >
               {showAiSearch ? (
-                "Main page"
+                "Main Page"
               ) : (
                 <>
-                  Ai Search <IoSearch size={22} />
+                  <span className="hidden sm:inline">Ai Search</span>
+                  <span className="sm:hidden">AI Search</span>
+                  <IoSearch className="hidden md:block md:size-[22px]" />
                 </>
               )}
             </button>
 
-            <div className="flex items-center gap-2 *:transition-all *:duration-300">
+            <div className="flex items-center gap-3 md:gap-4 *:transition-all *:duration-300">
               <img
                 src={signedInUser.photoURL}
                 alt={signedInUser.displayName}
                 title={signedInUser.displayName}
-                className="h-10 w-10 object-cover bg-black  rounded-full border-2 border-red-500/50 hover:border-red-500 "
+                className="h-8 w-8 md:h-10 md:w-10 hidden md:block object-cover bg-black rounded-full border-2 border-red-500/50 hover:border-red-500"
               />
 
-              <p className="capitalize">{signedInUser.displayName}</p>
-              <MdLogout
-                onClick={handleSignOut}
-                size={28}
-                className="cursor-pointer text-gray-500 hover:text-white"
-              />
+              <p className="capitalize text-sm md:text-base ">
+                {signedInUser.displayName.length > 12
+                  ? `${signedInUser.displayName.substring(0, 10)}...`
+                  : signedInUser.displayName}
+              </p>
+              <a>
+                <MdLogout
+                  onClick={handleSignOut}
+                  className=" size-6 md:size-7 cursor-pointer text-gray-500 hover:text-white"
+                />
+              </a>
             </div>
           </div>
         ) : (
-          <div className="h-18 flex items-center  *:transition-all *:duration-300">
+          <div className="h-18 flex items-center *:transition-all *:duration-300">
             <Link
               to={"/auth"}
-              className="bg-red-800/50 hover:bg-red-900 text-white font-bold px-4 py-2 text-lg rounded-full cursor-pointer"
+              className="bg-red-800/50 hover:bg-red-900 text-white font-bold px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg rounded-full cursor-pointer"
             >
-              Sign In
+              Get Started
             </Link>
           </div>
         )}

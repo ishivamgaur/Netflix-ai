@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase.js";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./store/slices/userSlice";
+import CustomCursor from "./components/CustomCursor.jsx";
 
 const toastOptions = {
   duration: 4000,
@@ -55,6 +56,7 @@ function App() {
     <div className="w-full min-h-screen relative bg-black">
       <Header />
       <Outlet /> {/* page content goes here */}
+      <CustomCursor />
       <Toaster position="top-right" toastOptions={toastOptions} />
     </div>
   );
