@@ -20,7 +20,7 @@ const AiSearchBar = ({ setFetchLoading, fetchLoading }) => {
     try {
       let data = await aiSuggestions(searchInput);
 
-      console.log("data", data);
+      // console.log("data", data);
 
       if (data?.aiResponse.trim() === "noMovies") {
         toast.error("No movies available");
@@ -38,7 +38,7 @@ const AiSearchBar = ({ setFetchLoading, fetchLoading }) => {
   };
 
   const fetchTmdbMovie = async () => {
-    console.log("aiMovieSuggestions: ", aiMovieSuggestions);
+    // console.log("aiMovieSuggestions: ", aiMovieSuggestions);
     let filtedMovies = null;
 
     if (aiMovieSuggestions.length !== 0) {
@@ -85,7 +85,7 @@ const AiSearchBar = ({ setFetchLoading, fetchLoading }) => {
   };
 
   useEffect(() => {
-    console.log("Ai movie response: ", aiMovieSuggestions);
+    // console.log("Ai movie response: ", aiMovieSuggestions);
     fetchTmdbMovie();
   }, [aiMovieSuggestions]);
 

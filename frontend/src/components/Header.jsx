@@ -31,7 +31,7 @@ const Header = () => {
   };
 
   const handleToggleAiToMainContainer = () => {
-    console.log("clicked");
+    // console.log("clicked");
     dispath(toggleAiSearchView());
   };
 

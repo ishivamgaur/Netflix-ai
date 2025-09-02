@@ -1,7 +1,7 @@
 import React from "react";
 
 const MovieVideoBackground = ({ trailerVideo }) => {
-  console.log("trailervideo: ", trailerVideo);
+  // console.log("trailervideo: ", trailerVideo);
   return (
     <div className="cursor-none selection:none select-auto">
       {trailerVideo ? (

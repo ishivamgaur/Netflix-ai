@@ -14,7 +14,7 @@ const useTrailerVideo = (id) => {
 
     const data = await response.json();
 
-    console.log("MOVIE VIDEOS LIST: ", data.results);
+    // console.log("MOVIE VIDEOS LIST: ", data.results);
     const movieVideoResults = data.results;
 
     let trailerOrAnyVideo =

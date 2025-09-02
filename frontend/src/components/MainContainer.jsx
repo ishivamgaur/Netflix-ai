@@ -5,14 +5,14 @@ import useTrailerVideo from "../hooks/useTrailerVideo.js";
 import { useSelector } from "react-redux";
 
 const MainContainer = ({ movie }) => {
-  console.log("movie: ", movie);
+  // console.log("movie: ", movie);
   const { id } = movie;
   useTrailerVideo(id);
 
   const trailerVideo = useSelector((store) => store.movie?.trailerVideo);
   // if (!trailerVideo) return;
 
-  console.log("trailerVideo: ", trailerVideo);
+  // console.log("trailerVideo: ", trailerVideo);
 
   return (
     <div className="relative">
