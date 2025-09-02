@@ -8,8 +8,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWFjODhmNWVjZWJmZmU1MDNlMGYzMzVjYzllY2E0NCIsIm5iZiI6MTc1NjMyMDU0OS45OCwic3ViIjoiNjhhZjUzMjVjYzUwZWVmYzNiNjI0ZDAwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.J4m4zv9qachFRJRTUnCb8QCM8Vzf1PtJ2rSH5YIQXPE",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 
@@ -18,4 +17,4 @@ export const TMBD_IMAGE_PATH_URL_HIGH_RES =
   "https://image.tmdb.org/t/p/orignal";
 
 //Backend URL
-export const AI_SUGGESTION_API_URL="https://netflix-ai-by-shivam.onrender.com/api/gemini/movie-suggestions"
+export const AI_SUGGESTION_API_URL = import.meta.env.VITE_BACKEND_URL;
