@@ -41,7 +41,7 @@ const Header = () => {
         <div>
           <Link to={"/"}>
             <img
-              src={LOGO}
+              src={LOGO || "./assets/netflix-logo.png"}
               alt="logo"
               className="h-12 md:h-14 lg:h-16 select-none"
             />
